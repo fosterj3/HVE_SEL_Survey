@@ -392,7 +392,7 @@ sel_long %>%
   ggplot(aes(quarter, y, color = domain, group = domain)) + labs(title= "" ,x = "", y = "Average Rating", color = "",  caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3", subtitle = "dotted lines indicate overall average of Fall and Winter") + scale_y_continuous(limits = c(0,3))  + geom_point() + geom_line() + facet_wrap(~race + gender) + scale_color_brewer(palette = "Dark2") + theme(legend.position = "bottom") + geom_hline(yintercept = 2.54, color = "#1B9E77", linetype = "dashed") + geom_hline(yintercept = 2, color = "#D95F02", linetype = "dashed") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
 ```
 
-## Social-Emotional Learning Strategies  
+## Social-Emotional Learning Strategies Questions  
 ```{r}
 # `stuck strategies` 
 a <- wf %>% 
