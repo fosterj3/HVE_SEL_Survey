@@ -2,7 +2,7 @@
 title: "Hazel Valley Elementary School"
 subtitle: "Fall 2020 and Winter 2021 Social-Emotional Learning Survey Results" 
 author: "James Lamar Foster"
-output: rmdformats::html_clean
+output: rmdformats::material
 ---
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
