@@ -316,7 +316,7 @@ a <- wf %>%
   summarise(`peers care`, "Total" = n, "Percent" = round(n/sum(n),4)) %>% 
   ggplot(aes(x= quarter, y= Percent, fill = `peers care`)) + geom_col(position = position_stack(reverse = T), width = .5) +
   labs(x = "", y= "", title = "Estudiantes se preocupan por mí y me tratan con amabilidad", subtitle = "Students care about me and treat me with kindness") + scale_fill_brewer(palette = "Dark2") +
-  geom_text(aes(label= ifelse(Percent > "0.05",scales::percent(Percent), "")), position = position_stack(vjust = .5, reverse = T), size =2.5, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
+  geom_text(aes(label= ifelse(Percent > "0.05",scales::percent(Percent), "")), position = position_stack(vjust = .5, reverse = T), size =3, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
 
 legend <- get_legend(a + guides(color = guide_legend(nrow = 1)) + theme(legend.position = "bottom"))
 ```
@@ -330,7 +330,7 @@ b <- wf %>%
   summarise(`I care about peers`, "Total" = n, "Percent" = round(n/sum(n),4)) %>% 
   ggplot(aes(x= quarter, y= Percent, fill = `I care about peers`)) + geom_col(position = position_stack(reverse = T), width = .5) +
   labs(x = "", y= "", title = "Me preocupo por los demás y los trato con amabilidad", subtitle = "I care about students and treat them with kindness") + scale_fill_brewer(palette = "Dark2") +
-  geom_text(aes(label= ifelse(Percent > "0.05",scales::percent(Percent), "")), position = position_stack(vjust = .5, reverse = T), size =2.5, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
+  geom_text(aes(label= ifelse(Percent > "0.05",scales::percent(Percent), "")), position = position_stack(vjust = .5, reverse = T), size =3, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
 ```
 
 ```{r}
@@ -341,7 +341,7 @@ c <- wf %>%
   count(`teachers care`) %>% 
   summarise(`teachers care`, "Total" = n, "Percent" = round(n/sum(n),4)) %>% 
   ggplot(aes(x= quarter, y= Percent, fill = `teachers care`)) + geom_col(position = position_stack(reverse = T), width = .5) +
-  labs(x = "", y= "", title = "Mis maestros se preocupan por mí y me tratan con amabilidad", caption = "values less than 5% are not shown", subtitle = "My teachers care about me and treat me with kindness") + scale_fill_brewer(palette = "Dark2") + geom_text(aes(label= ifelse(Percent > "0.05",scales::percent(Percent), "")), position = position_stack(vjust = .5, reverse = T), size =2.5, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
+  labs(x = "", y= "", title = "Mis maestros se preocupan por mí y me tratan con amabilidad", caption = "values less than 5% are not shown", subtitle = "My teachers care about me and treat me with kindness") + scale_fill_brewer(palette = "Dark2") + geom_text(aes(label= ifelse(Percent > "0.05",scales::percent(Percent), "")), position = position_stack(vjust = .5, reverse = T), size =3, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
 ```
 
 ```{r}
@@ -402,7 +402,7 @@ a <- wf %>%
   summarise(`stuck strategies` , "Total" = n, "Percent" = round(n/sum(n),4)) %>% 
   ggplot(aes(x= quarter, y= Percent, fill = `stuck strategies` )) + geom_col(position = position_stack(reverse = T), width = .5) +
   labs(x = "", y= "", title = "Tengo estrategias para despegarme", subtitle = "If I get stuck, I choose an effective strategy to succeed") + scale_fill_brewer(palette = "Dark2") +
-  geom_text(aes(label= ifelse(Percent > "0.05",scales::percent(Percent), "")), position = position_stack(vjust = .5, reverse = T), size =2.5, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
+  geom_text(aes(label= ifelse(Percent > "0.05",scales::percent(Percent), "")), position = position_stack(vjust = .5, reverse = T), size =3, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
 
 legend <- get_legend(a + guides(color = guide_legend(nrow = 1)) + theme(legend.position = "bottom"))
 ```
@@ -416,7 +416,7 @@ b <- wf %>%
   summarise(`upset strategies`, "Total" = n, "Percent" = round(n/sum(n),4)) %>% 
   ggplot(aes(x= quarter, y= Percent, fill = `upset strategies`)) + geom_col(position = position_stack(reverse = T), width = .5) +
   labs(x = "", y= "", title = "Tengo estrategias para calmarme cuando estoy molesto", subtitle = "If I get upset, I choose an effective strategy to calm down", caption = "values less than 5% are not shown") + scale_fill_brewer(palette = "Dark2") +
-  geom_text(aes(label= ifelse(Percent > "0.05",scales::percent(Percent), "")), position = position_stack(vjust = .5, reverse = T), size =2.5, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
+  geom_text(aes(label= ifelse(Percent > "0.05",scales::percent(Percent), "")), position = position_stack(vjust = .5, reverse = T), size =3, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
 ```
 
 ```{r}
@@ -428,7 +428,7 @@ c <- wf %>%
   summarise(`problem-solving strategies`, "Total" = n, "Percent" = round(n/sum(n),4)) %>% 
   ggplot(aes(x= quarter, y= Percent, fill = `problem-solving strategies`)) + geom_col(position = position_stack(reverse = T), width = .5) +
   labs(x = "", y= "", title = "Conozco muchas estrategias para solucionar problemas", subtitle = "I know many strategies to solve problems") + scale_fill_brewer(palette = "Dark2") +
-  geom_text(aes(label= ifelse(Percent > "0.05",scales::percent(Percent), "")), position = position_stack(vjust = .5, reverse = T), size =2.5, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
+  geom_text(aes(label= ifelse(Percent > "0.05",scales::percent(Percent), "")), position = position_stack(vjust = .5, reverse = T), size =3, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
 ```
 
 ```{r}
@@ -440,7 +440,7 @@ d <- wf %>%
   summarise(`share strategies with family`, "Total" = n, "Percent" = round(n/sum(n),4)) %>% 
   ggplot(aes(x= quarter, y= Percent, fill = `share strategies with family`)) + geom_col(position = position_stack(reverse = T), width = .5) +
   labs(x = "", y= "", title = "Comparto con mi familia las estrategias que he aprendido", caption = "values less than 5% are not shown", subtitle = "I share strategies I have learned with my family") + scale_fill_brewer(palette = "Dark2") +
-  geom_text(aes(label= ifelse(Percent > "0.05",scales::percent(Percent), "")), position = position_stack(vjust = .5, reverse = T), size =2.5, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
+  geom_text(aes(label= ifelse(Percent > "0.05",scales::percent(Percent), "")), position = position_stack(vjust = .5, reverse = T), size =3, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
 ```
 
 ```{r}
@@ -507,7 +507,7 @@ a <- wf %>%
   summarise(belong, "Total" = n, "Percent" = round(n/sum(n),4)) %>% 
   ggplot(aes(x= quarter, y= Percent, fill = belong)) + geom_col(position = position_stack(reverse = T), width = .5) +
   labs(x = "", y= "", title = "Tengo la sensación de que encajo aquí", subtitle = "I feel like I belong here") + scale_fill_brewer(palette = "Dark2") +
-  geom_text(aes(label= scales::percent(Percent)), position = position_stack(vjust = .5, reverse = T), size =2.5, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
+  geom_text(aes(label= scales::percent(Percent)), position = position_stack(vjust = .5, reverse = T), size =3, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
 
 legend <- get_legend(a + guides(color = guide_legend(nrow = 1)) + theme(legend.position = "bottom"))
 ```
@@ -521,7 +521,7 @@ b <- wf %>%
   summarise(`voice matters`, "Total" = n, "Percent" = round(n/sum(n),4)) %>% 
   ggplot(aes(x= quarter, y= Percent, fill = `voice matters`)) + geom_col(position = position_stack(reverse = T), width = .5) +
   labs(x = "", y= "", title = "Hay un adulto en la escuela en el que confío", subtitle = "There is an adult I trust at school") + scale_fill_brewer(palette = "Dark2") +
-  geom_text(aes(label= scales::percent(Percent)), position = position_stack(vjust = .5, reverse = T), size =2.5, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
+  geom_text(aes(label= scales::percent(Percent)), position = position_stack(vjust = .5, reverse = T), size =3, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
 ```
 
 ```{r}
@@ -533,7 +533,7 @@ c <- wf %>%
   summarise(`voice matters`, "Total" = n, "Percent" = round(n/sum(n),4)) %>% 
   ggplot(aes(x= quarter, y= Percent, fill = `voice matters`)) + geom_col(position = position_stack(reverse = T), width = .5) +
   labs(x = "", y= "", title = "Mi voz importa en nuestra escuela", subtitle = "My voice matters at our school") + scale_fill_brewer(palette = "Dark2") +
-  geom_text(aes(label= scales::percent(Percent)), position = position_stack(vjust = .5, reverse = T), size =2.5, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
+  geom_text(aes(label= scales::percent(Percent)), position = position_stack(vjust = .5, reverse = T), size =3, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
 ```
 
 ```{r}
@@ -545,7 +545,7 @@ d <- wf %>%
   summarise(`excited to learn`, "Total" = n, "Percent" = round(n/sum(n),3)) %>% 
   ggplot(aes(x= quarter, y= Percent, fill = `excited to learn`)) + geom_col(position = position_stack(reverse = T), width = .5) +
   labs(x = "", y= "", title = "Me emociona aprender", subtitle = "I feel excited about learning") + scale_fill_brewer(palette = "Dark2") +
-  geom_text(aes(label= scales::percent(Percent)), position = position_stack(vjust = .5, reverse = T), size =2.5, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
+  geom_text(aes(label= scales::percent(Percent)), position = position_stack(vjust = .5, reverse = T), size =3, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
 ```
 
 ```{r}
@@ -1062,7 +1062,7 @@ sel_df %>%
   summarise(`Wants school adult`, "Total" = n, "Percent" = round(n/sum(n),4)) %>% 
   ggplot(aes(x= quarter, y= Percent, fill = `Wants school adult`)) + geom_col(position = position_stack(reverse = T), width = .5) +
   labs(x = "", y= "", title = "") + scale_fill_brewer(palette = "Dark2") +
-  geom_text(aes(label= scales::percent(Percent)), position = position_stack(vjust = .5, reverse = T), size =2.5, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "bottom")
+  geom_text(aes(label= scales::percent(Percent)), position = position_stack(vjust = .5, reverse = T), size =4, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "bottom")
 ```
 
 ```{r}
