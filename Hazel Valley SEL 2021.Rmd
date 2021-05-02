@@ -315,7 +315,7 @@ a <- wf %>%
   count(`peers care`) %>% 
   summarise(`peers care`, "Total" = n, "Percent" = round(n/sum(n),4)) %>% 
   ggplot(aes(x= quarter, y= Percent, fill = `peers care`)) + geom_col(position = position_stack(reverse = T), width = .5) +
-  labs(x = "", y= "", title = "Estudiantes se preocupan por mí y me tratan con amabilidad", subtitle = "Students care about me and treat me with kindness") + scale_fill_brewer(palette = "Dark2") +
+  labs(x = "", y= "", title = "Estudiantes se preocupan por mí y me tratan con amabilidad", subtitle = "Students care about me and treat me with kindness") + scale_fill_brewer(palette = "Accent") +
   geom_text(aes(label= ifelse(Percent > "0.05",scales::percent(Percent), "")), position = position_stack(vjust = .5, reverse = T), size =3, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
 
 legend <- get_legend(a + guides(color = guide_legend(nrow = 1)) + theme(legend.position = "bottom"))
@@ -329,7 +329,7 @@ b <- wf %>%
   count(`I care about peers`) %>% 
   summarise(`I care about peers`, "Total" = n, "Percent" = round(n/sum(n),4)) %>% 
   ggplot(aes(x= quarter, y= Percent, fill = `I care about peers`)) + geom_col(position = position_stack(reverse = T), width = .5) +
-  labs(x = "", y= "", title = "Me preocupo por los demás y los trato con amabilidad", subtitle = "I care about students and treat them with kindness") + scale_fill_brewer(palette = "Dark2") +
+  labs(x = "", y= "", title = "Me preocupo por los demás y los trato con amabilidad", subtitle = "I care about students and treat them with kindness") + scale_fill_brewer(palette = "Accent") +
   geom_text(aes(label= ifelse(Percent > "0.05",scales::percent(Percent), "")), position = position_stack(vjust = .5, reverse = T), size =3, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
 ```
 
@@ -341,7 +341,7 @@ c <- wf %>%
   count(`teachers care`) %>% 
   summarise(`teachers care`, "Total" = n, "Percent" = round(n/sum(n),4)) %>% 
   ggplot(aes(x= quarter, y= Percent, fill = `teachers care`)) + geom_col(position = position_stack(reverse = T), width = .5) +
-  labs(x = "", y= "", title = "Mis maestros se preocupan por mí y me tratan con amabilidad", caption = "values less than 5% are not shown", subtitle = "My teachers care about me and treat me with kindness") + scale_fill_brewer(palette = "Dark2") + geom_text(aes(label= ifelse(Percent > "0.05",scales::percent(Percent), "")), position = position_stack(vjust = .5, reverse = T), size =3, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
+  labs(x = "", y= "", title = "Mis maestros se preocupan por mí y me tratan con amabilidad", caption = "values less than 5% are not shown", subtitle = "My teachers care about me and treat me with kindness") + scale_fill_brewer(palette = "Accent") + geom_text(aes(label= ifelse(Percent > "0.05",scales::percent(Percent), "")), position = position_stack(vjust = .5, reverse = T), size =3, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
 ```
 
 ```{r}
@@ -355,7 +355,7 @@ sel_long %>%
   filter(str_detect(domain, "care")) %>% 
   group_by(domain, quarter) %>% 
   summarise(y= round(mean(score, na.rm = T),2)) %>% 
-  ggplot(aes(quarter, y, fill = domain, group = domain)) + labs(title= "", x = "", y = "", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~domain) + geom_text(aes(label = y), vjust = -.5, size = 3) + scale_fill_brewer(palette = "Dark2") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
+  ggplot(aes(quarter, y, fill = domain, group = domain)) + labs(title= "", x = "", y = "", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~domain) + geom_text(aes(label = y), vjust = -.5, size = 3) + scale_fill_brewer(palette = "Accent") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
 ```
 
 ### Caring Average Growth by Gender
@@ -366,7 +366,7 @@ sel_long %>%
   filter(domain != "wants school adult") %>% 
   group_by(domain, quarter, gender) %>% 
   summarise(y= mean(score, na.rm = T)) %>% 
-  ggplot(aes(quarter, y, color = domain, group = domain)) + labs(title= "" ,x = "", y = "Average Rating", color = "",  caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3", subtitle = "dotted lines indicate overall average of Fall and Winter") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always"))  + geom_point() + geom_line() + facet_wrap(~gender) + scale_color_brewer(palette = "Dark2") + theme(legend.position = "bottom") + geom_hline(yintercept = 2.54, color = "#1B9E77", linetype = "dashed") + geom_hline(yintercept = 2, color = "#D95F02", linetype = "dashed") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
+  ggplot(aes(quarter, y, color = domain, group = domain)) + labs(title= "" ,x = "", y = "Average Rating", color = "",  caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3", subtitle = "dotted lines indicate overall average of Fall and Winter") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always"))  + geom_point() + geom_line() + facet_wrap(~gender) + scale_color_brewer(palette = "Accent") + theme(legend.position = "bottom") + geom_hline(yintercept = 2.54, color = "#7FC97F", linetype = "dashed") + geom_hline(yintercept = 2, color = "#BEAED4", linetype = "dashed") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
 ```
 
 ### Caring Average Growth by Race 
@@ -377,7 +377,7 @@ sel_long %>%
   filter(domain != "wants school adult") %>% 
   group_by(domain, quarter, race) %>% 
   summarise(y= mean(score, na.rm = T)) %>% 
-  ggplot(aes(quarter, y, color = domain, group = domain)) + labs(title= "" ,x = "", y = "Average Rating", color = "",  caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3", subtitle = "dotted lines indicate overall average of Fall and Winter") + scale_y_continuous(limits = c(0,3))  + geom_point() + geom_line() + facet_wrap(~race) + scale_color_brewer(palette = "Dark2") + theme(legend.position = "bottom") + geom_hline(yintercept = 2.54, color = "#1B9E77", linetype = "dashed") + geom_hline(yintercept = 2, color = "#D95F02", linetype = "dashed") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
+  ggplot(aes(quarter, y, color = domain, group = domain)) + labs(title= "" ,x = "", y = "Average Rating", color = "",  caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3", subtitle = "dotted lines indicate overall average of Fall and Winter") + scale_y_continuous(limits = c(0,3))  + geom_point() + geom_line() + facet_wrap(~race) + scale_color_brewer(palette = "Accent") + theme(legend.position = "bottom") + geom_hline(yintercept = 2.54, color = "#7FC97F", linetype = "dashed") + geom_hline(yintercept = 2, color = "#BEAED4", linetype = "dashed") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
 ```
 
 ### Caring Average Growth by Race and Gender 
@@ -389,7 +389,7 @@ sel_long %>%
   filter(domain != "wants school adult") %>% 
   group_by(domain, quarter, race, gender) %>% 
   summarise(y= mean(score, na.rm = T)) %>% 
-  ggplot(aes(quarter, y, color = domain, group = domain)) + labs(title= "" ,x = "", y = "Average Rating", color = "",  caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3", subtitle = "dotted lines indicate overall average of Fall and Winter") + scale_y_continuous(limits = c(0,3))  + geom_point() + geom_line() + facet_wrap(~race + gender) + scale_color_brewer(palette = "Dark2") + theme(legend.position = "bottom") + geom_hline(yintercept = 2.54, color = "#1B9E77", linetype = "dashed") + geom_hline(yintercept = 2, color = "#D95F02", linetype = "dashed") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
+  ggplot(aes(quarter, y, color = domain, group = domain)) + labs(title= "" ,x = "", y = "Average Rating", color = "",  caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3", subtitle = "dotted lines indicate overall average of Fall and Winter") + scale_y_continuous(limits = c(0,3))  + geom_point() + geom_line() + facet_wrap(~race + gender) + scale_color_brewer(palette = "Accent") + theme(legend.position = "bottom") + geom_hline(yintercept = 2.54, color = "#7FC97F", linetype = "dashed") + geom_hline(yintercept = 2, color = "#BEAED4", linetype = "dashed") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
 ```
 
 ## Social-Emotional Learning Strategies Questions  
@@ -401,7 +401,7 @@ a <- wf %>%
   count(`stuck strategies` ) %>% 
   summarise(`stuck strategies` , "Total" = n, "Percent" = round(n/sum(n),4)) %>% 
   ggplot(aes(x= quarter, y= Percent, fill = `stuck strategies` )) + geom_col(position = position_stack(reverse = T), width = .5) +
-  labs(x = "", y= "", title = "Tengo estrategias para despegarme", subtitle = "If I get stuck, I choose an effective strategy to succeed") + scale_fill_brewer(palette = "Dark2") +
+  labs(x = "", y= "", title = "Tengo estrategias para despegarme", subtitle = "If I get stuck, I choose an effective strategy to succeed") + scale_fill_brewer(palette = "Accent") +
   geom_text(aes(label= ifelse(Percent > "0.05",scales::percent(Percent), "")), position = position_stack(vjust = .5, reverse = T), size =3, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
 
 legend <- get_legend(a + guides(color = guide_legend(nrow = 1)) + theme(legend.position = "bottom"))
@@ -415,7 +415,7 @@ b <- wf %>%
   count(`upset strategies`) %>% 
   summarise(`upset strategies`, "Total" = n, "Percent" = round(n/sum(n),4)) %>% 
   ggplot(aes(x= quarter, y= Percent, fill = `upset strategies`)) + geom_col(position = position_stack(reverse = T), width = .5) +
-  labs(x = "", y= "", title = "Tengo estrategias para calmarme cuando estoy molesto", subtitle = "If I get upset, I choose an effective strategy to calm down", caption = "values less than 5% are not shown") + scale_fill_brewer(palette = "Dark2") +
+  labs(x = "", y= "", title = "Tengo estrategias para calmarme cuando estoy molesto", subtitle = "If I get upset, I choose an effective strategy to calm down", caption = "values less than 5% are not shown") + scale_fill_brewer(palette = "Accent") +
   geom_text(aes(label= ifelse(Percent > "0.05",scales::percent(Percent), "")), position = position_stack(vjust = .5, reverse = T), size =3, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
 ```
 
@@ -427,7 +427,7 @@ c <- wf %>%
   count(`problem-solving strategies`) %>% 
   summarise(`problem-solving strategies`, "Total" = n, "Percent" = round(n/sum(n),4)) %>% 
   ggplot(aes(x= quarter, y= Percent, fill = `problem-solving strategies`)) + geom_col(position = position_stack(reverse = T), width = .5) +
-  labs(x = "", y= "", title = "Conozco muchas estrategias para solucionar problemas", subtitle = "I know many strategies to solve problems") + scale_fill_brewer(palette = "Dark2") +
+  labs(x = "", y= "", title = "Conozco muchas estrategias para solucionar problemas", subtitle = "I know many strategies to solve problems") + scale_fill_brewer(palette = "Accent") +
   geom_text(aes(label= ifelse(Percent > "0.05",scales::percent(Percent), "")), position = position_stack(vjust = .5, reverse = T), size =3, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
 ```
 
@@ -439,7 +439,7 @@ d <- wf %>%
   count(`share strategies with family`) %>% 
   summarise(`share strategies with family`, "Total" = n, "Percent" = round(n/sum(n),4)) %>% 
   ggplot(aes(x= quarter, y= Percent, fill = `share strategies with family`)) + geom_col(position = position_stack(reverse = T), width = .5) +
-  labs(x = "", y= "", title = "Comparto con mi familia las estrategias que he aprendido", caption = "values less than 5% are not shown", subtitle = "I share strategies I have learned with my family") + scale_fill_brewer(palette = "Dark2") +
+  labs(x = "", y= "", title = "Comparto con mi familia las estrategias que he aprendido", caption = "values less than 5% are not shown", subtitle = "I share strategies I have learned with my family") + scale_fill_brewer(palette = "Accent") +
   geom_text(aes(label= ifelse(Percent > "0.05",scales::percent(Percent), "")), position = position_stack(vjust = .5, reverse = T), size =3, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
 ```
 
@@ -458,7 +458,7 @@ sel_long %>%
   filter(str_detect(domain, "strategies")) %>% 
   group_by(domain, quarter) %>% 
   summarise(y= round(mean(score, na.rm = T),2)) %>% 
-  ggplot(aes(quarter, y, fill = domain, group = domain)) + labs(title= "", x = "", y = "", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~domain) + geom_text(aes(label = y), vjust = -.5, size = 3) + scale_fill_brewer(palette = "Dark2") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
+  ggplot(aes(quarter, y, fill = domain, group = domain)) + labs(title= "", x = "", y = "", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~domain) + geom_text(aes(label = y), vjust = -.5, size = 3) + scale_fill_brewer(palette = "Accent") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
 ```
 
 ### SEL Strategies Average Growth by Gender
@@ -470,7 +470,7 @@ sel_long %>%
   filter(!is.na(gender)) %>% 
   group_by(domain, quarter, gender) %>% 
   summarise(y= mean(score, na.rm = T)) %>% 
-  ggplot(aes(quarter, y, color = domain, group = domain)) + labs(title= "" ,subtitle = "dotted lines indicate overall average of Fall and Winter", x = "", y = "Average Rating", color = "",  caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always"))  + geom_point() + geom_line() + facet_wrap(~gender) + scale_color_brewer(palette = "Dark2") + theme(legend.position = "bottom") + geom_hline(yintercept = 2.06, color = "#1B9E77", linetype = "dashed") + geom_hline(yintercept = 1.73, color = "#D95F02", linetype = "dashed") + geom_hline(yintercept = 2.05, color = "#7570B3", linetype = "dashed") + geom_hline(yintercept = 2.04, color = "#E7298A", linetype = "dashed") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold")) + guides(color = guide_legend(nrow = 2, byrow = TRUE))
+  ggplot(aes(quarter, y, color = domain, group = domain)) + labs(title= "" ,subtitle = "dotted lines indicate overall average of Fall and Winter", x = "", y = "Average Rating", color = "",  caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always"))  + geom_point() + geom_line() + facet_wrap(~gender) + scale_color_brewer(palette = "Accent") + theme(legend.position = "bottom") + geom_hline(yintercept = 2.06, color = "#7FC97F", linetype = "dashed") + geom_hline(yintercept = 1.73, color = "#BEAED4", linetype = "dashed") + geom_hline(yintercept = 2.05, color = "#FDC086", linetype = "dashed") + geom_hline(yintercept = 2.04, color = "#FFFF99", linetype = "dashed") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold")) + guides(color = guide_legend(nrow = 2, byrow = TRUE))
 ```
 
 ### SEL Strategies Average Growth by Race
@@ -481,7 +481,7 @@ sel_long %>%
   filter(!is.na(race)) %>% 
   group_by(domain, quarter, race) %>% 
   summarise(y= mean(score, na.rm = T)) %>% 
-  ggplot(aes(quarter, y, color = domain, group = domain)) + labs(title= "" ,subtitle = "dotted lines indicate overall average of Fall and Winter", x = "", y = "Average Rating", color = "",  caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3))  + geom_point() + geom_line() + facet_wrap(~race) + scale_color_brewer(palette = "Dark2") + theme(legend.position = "bottom") + geom_hline(yintercept = 2.06, color = "#1B9E77", linetype = "dashed") + geom_hline(yintercept = 1.73, color = "#D95F02", linetype = "dashed") + geom_hline(yintercept = 2.05, color = "#7570B3", linetype = "dashed") + geom_hline(yintercept = 2.04, color = "#E7298A", linetype = "dashed") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold")) + guides(color = guide_legend(nrow = 2, byrow = TRUE))
+  ggplot(aes(quarter, y, color = domain, group = domain)) + labs(title= "" ,subtitle = "dotted lines indicate overall average of Fall and Winter", x = "", y = "Average Rating", color = "",  caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3))  + geom_point() + geom_line() + facet_wrap(~race) + scale_color_brewer(palette = "Accent") + theme(legend.position = "bottom") + geom_hline(yintercept = 2.06, color = "#7FC97F", linetype = "dashed") + geom_hline(yintercept = 1.73, color = "#BEAED4", linetype = "dashed") + geom_hline(yintercept = 2.05, color = "#FDC086", linetype = "dashed") + geom_hline(yintercept = 2.04, color = "#FFFF99", linetype = "dashed") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold")) + guides(color = guide_legend(nrow = 2, byrow = TRUE))
 ```
 
 ### SEL Strategies Average Growth by Race and Gender
@@ -493,7 +493,7 @@ sel_long %>%
   filter(!is.na(gender)) %>% 
   group_by(domain, quarter, race, gender) %>% 
   summarise(y= mean(score, na.rm = T)) %>% 
-  ggplot(aes(quarter, y, color = domain, group = domain)) + labs(title= "", subtitle = "dotted lines indicate overall average of Fall and Winter", x = "", y = "Average Rating", color = "",  caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3))  + geom_point() + geom_line() + facet_wrap(~race + gender) + scale_color_brewer(palette = "Dark2") + theme(legend.position = "bottom") + geom_hline(yintercept = 2.06, color = "#1B9E77", linetype = "dashed") + geom_hline(yintercept = 1.73, color = "#D95F02", linetype = "dashed") + geom_hline(yintercept = 2.05, color = "#7570B3", linetype = "dashed") + geom_hline(yintercept = 2.04, color = "#E7298A", linetype = "dashed") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold")) + guides(color = guide_legend(nrow = 2, byrow = TRUE))
+  ggplot(aes(quarter, y, color = domain, group = domain)) + labs(title= "", subtitle = "dotted lines indicate overall average of Fall and Winter", x = "", y = "Average Rating", color = "",  caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3))  + geom_point() + geom_line() + facet_wrap(~race + gender) + scale_color_brewer(palette = "Accent") + theme(legend.position = "bottom") + geom_hline(yintercept = 2.06, color = "#7FC97F", linetype = "dashed") + geom_hline(yintercept = 1.73, color = "#BEAED4", linetype = "dashed") + geom_hline(yintercept = 2.05, color = "#FDC086", linetype = "dashed") + geom_hline(yintercept = 2.04, color = "#FFFF99", linetype = "dashed") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold")) + guides(color = guide_legend(nrow = 2, byrow = TRUE))
 ```
 
 ## Other Social-Emotional Learning Questions
@@ -506,7 +506,7 @@ a <- wf %>%
   count(belong) %>% 
   summarise(belong, "Total" = n, "Percent" = round(n/sum(n),4)) %>% 
   ggplot(aes(x= quarter, y= Percent, fill = belong)) + geom_col(position = position_stack(reverse = T), width = .5) +
-  labs(x = "", y= "", title = "Tengo la sensación de que encajo aquí", subtitle = "I feel like I belong here") + scale_fill_brewer(palette = "Dark2") +
+  labs(x = "", y= "", title = "Tengo la sensación de que encajo aquí", subtitle = "I feel like I belong here") + scale_fill_brewer(palette = "Accent") +
   geom_text(aes(label= scales::percent(Percent)), position = position_stack(vjust = .5, reverse = T), size =3, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
 
 legend <- get_legend(a + guides(color = guide_legend(nrow = 1)) + theme(legend.position = "bottom"))
@@ -520,7 +520,7 @@ b <- wf %>%
   count(`voice matters`) %>% 
   summarise(`voice matters`, "Total" = n, "Percent" = round(n/sum(n),4)) %>% 
   ggplot(aes(x= quarter, y= Percent, fill = `voice matters`)) + geom_col(position = position_stack(reverse = T), width = .5) +
-  labs(x = "", y= "", title = "Hay un adulto en la escuela en el que confío", subtitle = "There is an adult I trust at school") + scale_fill_brewer(palette = "Dark2") +
+  labs(x = "", y= "", title = "Hay un adulto en la escuela en el que confío", subtitle = "There is an adult I trust at school") + scale_fill_brewer(palette = "Accent") +
   geom_text(aes(label= scales::percent(Percent)), position = position_stack(vjust = .5, reverse = T), size =3, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
 ```
 
@@ -532,7 +532,7 @@ c <- wf %>%
   count(`voice matters`) %>% 
   summarise(`voice matters`, "Total" = n, "Percent" = round(n/sum(n),4)) %>% 
   ggplot(aes(x= quarter, y= Percent, fill = `voice matters`)) + geom_col(position = position_stack(reverse = T), width = .5) +
-  labs(x = "", y= "", title = "Mi voz importa en nuestra escuela", subtitle = "My voice matters at our school") + scale_fill_brewer(palette = "Dark2") +
+  labs(x = "", y= "", title = "Mi voz importa en nuestra escuela", subtitle = "My voice matters at our school") + scale_fill_brewer(palette = "Accent") +
   geom_text(aes(label= scales::percent(Percent)), position = position_stack(vjust = .5, reverse = T), size =3, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
 ```
 
@@ -544,7 +544,7 @@ d <- wf %>%
   count(`excited to learn`) %>% 
   summarise(`excited to learn`, "Total" = n, "Percent" = round(n/sum(n),3)) %>% 
   ggplot(aes(x= quarter, y= Percent, fill = `excited to learn`)) + geom_col(position = position_stack(reverse = T), width = .5) +
-  labs(x = "", y= "", title = "Me emociona aprender", subtitle = "I feel excited about learning") + scale_fill_brewer(palette = "Dark2") +
+  labs(x = "", y= "", title = "Me emociona aprender", subtitle = "I feel excited about learning") + scale_fill_brewer(palette = "Accent") +
   geom_text(aes(label= scales::percent(Percent)), position = position_stack(vjust = .5, reverse = T), size =3, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
 ```
 
@@ -564,7 +564,7 @@ sel_long %>%
   filter(domain != "wants school adult") %>% 
   group_by(domain, quarter) %>% 
   summarise(y= round(mean(score, na.rm = T),2)) %>% 
-  ggplot(aes(quarter, y, fill = domain, group = domain)) + labs(title= "", x = "", y = "", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~domain) + geom_text(aes(label = y), vjust = -.5, size = 3) + scale_fill_brewer(palette = "Dark2") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
+  ggplot(aes(quarter, y, fill = domain, group = domain)) + labs(title= "", x = "", y = "", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~domain) + geom_text(aes(label = y), vjust = -.5, size = 3) + scale_fill_brewer(palette = "Accent") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
 ```
 
 ### Other SEL Questions Average Growth by Gender
@@ -576,11 +576,11 @@ sel_long %>%
   filter(!is.na(gender)) %>% 
   group_by(domain, quarter, gender) %>% 
   summarise(y= mean(score, na.rm = T)) %>% 
-  ggplot(aes(quarter, y, color = domain, group = domain)) + labs(title= "" ,x = "", y = "Average Rating", color= "", subtitle = "dotted lines indicate overall average of Fall and Winter", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + geom_point() + geom_line() + facet_wrap(~gender) + scale_color_brewer(palette = "Dark2") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"), legend.position = "bottom") + guides(color = guide_legend(nrow = 2, byrow = TRUE)) + 
-  geom_hline(yintercept = 2.21, color = "#1B9E77", linetype = "dashed") + 
-  geom_hline(yintercept = 2.10, color = "#D95F02", linetype = "dashed") + 
-  geom_hline(yintercept = 2.33, color = "#7570B3", linetype = "dashed") + 
-  geom_hline(yintercept = 1.99, color = "#E7298A", linetype = "dashed") 
+  ggplot(aes(quarter, y, color = domain, group = domain)) + labs(title= "" ,x = "", y = "Average Rating", color= "", subtitle = "dotted lines indicate overall average of Fall and Winter", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + geom_point() + geom_line() + facet_wrap(~gender) + scale_color_brewer(palette = "Accent") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"), legend.position = "bottom") + guides(color = guide_legend(nrow = 2, byrow = TRUE)) + 
+  geom_hline(yintercept = 2.21, color = "#7FC97F", linetype = "dashed") + 
+  geom_hline(yintercept = 2.10, color = "#BEAED4", linetype = "dashed") + 
+  geom_hline(yintercept = 2.33, color = "#FDC086", linetype = "dashed") + 
+  geom_hline(yintercept = 1.99, color = "#FFFF99", linetype = "dashed") 
 ```
 
 ### Other SEL Questions Average Growth by Race
@@ -592,11 +592,11 @@ sel_long %>%
   filter(!is.na(race)) %>% 
   group_by(domain, quarter, race) %>% 
   summarise(y= mean(score, na.rm = T)) %>% 
-  ggplot(aes(quarter, y, color = domain, group = domain)) + labs(title= "" ,x = "", y = "Average Rating", color= "", subtitle = "dotted lines indicate overall average of Fall and Winter", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits=c(0, 3)) + geom_point() + geom_line() + facet_wrap(~race) + scale_color_brewer(palette = "Dark2") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"), legend.position = "bottom") + guides(color = guide_legend(nrow = 2, byrow = TRUE)) + 
-  geom_hline(yintercept = 2.21, color = "#1B9E77", linetype = "dashed") + 
-  geom_hline(yintercept = 2.10, color = "#D95F02", linetype = "dashed") + 
-  geom_hline(yintercept = 2.33, color = "#7570B3", linetype = "dashed") + 
-  geom_hline(yintercept = 1.99, color = "#E7298A", linetype = "dashed") 
+  ggplot(aes(quarter, y, color = domain, group = domain)) + labs(title= "" ,x = "", y = "Average Rating", color= "", subtitle = "dotted lines indicate overall average of Fall and Winter", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits=c(0, 3)) + geom_point() + geom_line() + facet_wrap(~race) + scale_color_brewer(palette = "Accent") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"), legend.position = "bottom") + guides(color = guide_legend(nrow = 2, byrow = TRUE)) + 
+  geom_hline(yintercept = 2.21, color = "#7FC97F", linetype = "dashed") + 
+  geom_hline(yintercept = 2.10, color = "#BEAED4", linetype = "dashed") + 
+  geom_hline(yintercept = 2.33, color = "#FDC086", linetype = "dashed") + 
+  geom_hline(yintercept = 1.99, color = "#FFFF99", linetype = "dashed") 
 ```
 
 ### Other SEL Questions Average Growth by Race and Gender
@@ -609,11 +609,11 @@ sel_long %>%
   filter(!is.na(gender)) %>% 
   group_by(domain, quarter, race, gender) %>% 
   summarise(y= mean(score, na.rm = T)) %>% 
-  ggplot(aes(quarter, y, color = domain, group = domain)) + labs(title= "" ,x = "", y = "Average Rating", color= "", subtitle = "dotted lines indicate overall average of Fall and Winter", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits=c(0, 3)) + geom_point() + geom_line() + facet_wrap(~race + gender) + scale_color_brewer(palette = "Dark2") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"), legend.position = "bottom") + guides(color = guide_legend(nrow = 2, byrow = TRUE)) + 
-  geom_hline(yintercept = 2.21, color = "#1B9E77", linetype = "dashed") + 
-  geom_hline(yintercept = 2.10, color = "#D95F02", linetype = "dashed") + 
-  geom_hline(yintercept = 2.33, color = "#7570B3", linetype = "dashed") + 
-  geom_hline(yintercept = 1.99, color = "#E7298A", linetype = "dashed") 
+  ggplot(aes(quarter, y, color = domain, group = domain)) + labs(title= "" ,x = "", y = "Average Rating", color= "", subtitle = "dotted lines indicate overall average of Fall and Winter", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits=c(0, 3)) + geom_point() + geom_line() + facet_wrap(~race + gender) + scale_color_brewer(palette = "Accent") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"), legend.position = "bottom") + guides(color = guide_legend(nrow = 2, byrow = TRUE)) + 
+  geom_hline(yintercept = 2.21, color = "#7FC97F", linetype = "dashed") + 
+  geom_hline(yintercept = 2.10, color = "#BEAED4", linetype = "dashed") + 
+  geom_hline(yintercept = 2.33, color = "#FDC086", linetype = "dashed") + 
+  geom_hline(yintercept = 1.99, color = "#FFFF99", linetype = "dashed") 
 ```
 
 # Tengo la sensación de que encajo aquí  
@@ -634,7 +634,7 @@ sel_df %>%
   filter(!is.na(race)) %>% 
   group_by(quarter, race) %>% 
   summarise(y = round(mean(belong, na.rm = T),2)) %>% 
-  ggplot(aes(quarter, y, fill = race, group = race)) + labs(title= "", x = "", y = "Average Rating", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~race) + geom_text(aes(label = y), vjust = 1.5, size = 3) + scale_fill_brewer(palette = "Dark2") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
+  ggplot(aes(quarter, y, fill = race, group = race)) + labs(title= "", x = "", y = "Average Rating", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~race) + geom_text(aes(label = y), vjust = 1.5, size = 3) + scale_fill_brewer(palette = "Accent") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
 ```
 
 ```{r}
@@ -674,7 +674,7 @@ sel_df %>%
   filter(!is.na(race)) %>% 
   group_by(quarter, race) %>% 
   summarise(y = round(mean(trust_adult, na.rm = T),2)) %>% 
-  ggplot(aes(quarter, y, fill = race, group = race)) + labs(title= "", x = "", y = "Average Rating", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~race) + geom_text(aes(label = y), vjust = 1.5, size = 3) + scale_fill_brewer(palette = "Dark2") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
+  ggplot(aes(quarter, y, fill = race, group = race)) + labs(title= "", x = "", y = "Average Rating", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~race) + geom_text(aes(label = y), vjust = 1.5, size = 3) + scale_fill_brewer(palette = "Accent") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
 ```
 
 ```{r}
@@ -714,7 +714,7 @@ sel_df %>%
   filter(!is.na(race)) %>% 
   group_by(quarter, race) %>% 
   summarise(y = round(mean(voice_matters, na.rm = T),2)) %>% 
-  ggplot(aes(quarter, y, fill = race, group = race)) + labs(title= "", x = "", y = "Average Rating", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~race) + geom_text(aes(label = y), vjust = 1.5, size = 3) + scale_fill_brewer(palette = "Dark2") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
+  ggplot(aes(quarter, y, fill = race, group = race)) + labs(title= "", x = "", y = "Average Rating", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~race) + geom_text(aes(label = y), vjust = 1.5, size = 3) + scale_fill_brewer(palette = "Accent") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
 ```
 
 ```{r}
@@ -754,7 +754,7 @@ sel_df %>%
   filter(!is.na(race)) %>% 
   group_by(quarter, race) %>% 
   summarise(y = round(mean(excited_to_learn, na.rm = T),2)) %>% 
-  ggplot(aes(quarter, y, fill = race, group = race)) + labs(title= "", x = "", y = "Average Rating", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~race) + geom_text(aes(label = y), vjust = 1.5, size = 3) + scale_fill_brewer(palette = "Dark2") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
+  ggplot(aes(quarter, y, fill = race, group = race)) + labs(title= "", x = "", y = "Average Rating", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~race) + geom_text(aes(label = y), vjust = 1.5, size = 3) + scale_fill_brewer(palette = "Accent") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
 ```
 
 ```{r}
@@ -795,7 +795,7 @@ sel_df %>%
   filter(!is.na(race)) %>% 
   group_by(quarter, race) %>% 
   summarise(y = round(mean(peers_care, na.rm = T),2)) %>% 
-  ggplot(aes(quarter, y, fill = race, group = race)) + labs(title= "", x = "", y = "Average Rating", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~race) + geom_text(aes(label = y), vjust = 1.5, size = 3) + scale_fill_brewer(palette = "Dark2") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
+  ggplot(aes(quarter, y, fill = race, group = race)) + labs(title= "", x = "", y = "Average Rating", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~race) + geom_text(aes(label = y), vjust = 1.5, size = 3) + scale_fill_brewer(palette = "Accent") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
 ```
 
 ```{r}
@@ -834,7 +834,7 @@ sel_df %>%
   filter(!is.na(race)) %>% 
   group_by(quarter, race) %>% 
   summarise(y = round(mean(i_care_about_peers, na.rm = T),2)) %>% 
-  ggplot(aes(quarter, y, fill = race, group = race)) + labs(title= "", x = "", y = "Average Rating", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~race) + geom_text(aes(label = y), vjust = 1.5, size = 3) + scale_fill_brewer(palette = "Dark2") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
+  ggplot(aes(quarter, y, fill = race, group = race)) + labs(title= "", x = "", y = "Average Rating", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~race) + geom_text(aes(label = y), vjust = 1.5, size = 3) + scale_fill_brewer(palette = "Accent") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
 ```
 
 ```{r}
@@ -874,7 +874,7 @@ sel_df %>%
   filter(!is.na(race)) %>% 
   group_by(quarter, race) %>% 
   summarise(y = round(mean(teachers_care, na.rm = T),2)) %>% 
-  ggplot(aes(quarter, y, fill = race, group = race)) + labs(title= "", x = "", y = "Average Rating", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~race) + geom_text(aes(label = y), vjust = 1.5, size = 3) + scale_fill_brewer(palette = "Dark2") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
+  ggplot(aes(quarter, y, fill = race, group = race)) + labs(title= "", x = "", y = "Average Rating", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~race) + geom_text(aes(label = y), vjust = 1.5, size = 3) + scale_fill_brewer(palette = "Accent") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
 ```
 
 ```{r}
@@ -913,7 +913,7 @@ sel_df %>%
   filter(!is.na(race)) %>% 
   group_by(quarter, race) %>% 
   summarise(y = round(mean(stuck_strategies, na.rm = T),2)) %>% 
-  ggplot(aes(quarter, y, fill = race, group = race)) + labs(title= "", x = "", y = "Average Rating", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~race) + geom_text(aes(label = y), vjust = 1.5, size = 3) + scale_fill_brewer(palette = "Dark2") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
+  ggplot(aes(quarter, y, fill = race, group = race)) + labs(title= "", x = "", y = "Average Rating", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~race) + geom_text(aes(label = y), vjust = 1.5, size = 3) + scale_fill_brewer(palette = "Accent") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
 ```
 
 ```{r}
@@ -952,7 +952,7 @@ sel_df %>%
   filter(!is.na(race)) %>% 
   group_by(quarter, race) %>% 
   summarise(y = round(mean(upset_strategies, na.rm = T),2)) %>% 
-  ggplot(aes(quarter, y, fill = race, group = race)) + labs(title= "", x = "", y = "Average Rating", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~race) + geom_text(aes(label = y), vjust = 1.5, size = 3) + scale_fill_brewer(palette = "Dark2") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
+  ggplot(aes(quarter, y, fill = race, group = race)) + labs(title= "", x = "", y = "Average Rating", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~race) + geom_text(aes(label = y), vjust = 1.5, size = 3) + scale_fill_brewer(palette = "Accent") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
 ```
 
 ```{r}
@@ -991,7 +991,7 @@ sel_df %>%
   filter(!is.na(race)) %>% 
   group_by(quarter, race) %>% 
   summarise(y = round(mean(problem_solving_strategies, na.rm = T),2)) %>% 
-  ggplot(aes(quarter, y, fill = race, group = race)) + labs(title= "", x = "", y = "Average Rating", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~race) + geom_text(aes(label = y), vjust = 1.5, size = 3) + scale_fill_brewer(palette = "Dark2") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
+  ggplot(aes(quarter, y, fill = race, group = race)) + labs(title= "", x = "", y = "Average Rating", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~race) + geom_text(aes(label = y), vjust = 1.5, size = 3) + scale_fill_brewer(palette = "Accent") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
 ```
 
 ```{r}
@@ -1030,7 +1030,7 @@ sel_df %>%
   filter(!is.na(race)) %>% 
   group_by(quarter, race) %>% 
   summarise(y = round(mean(share_strategies_with_family, na.rm = T),2)) %>% 
-  ggplot(aes(quarter, y, fill = race, group = race)) + labs(title= "", x = "", y = "Average Rating", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~race) + geom_text(aes(label = y), vjust = 1.5, size = 3) + scale_fill_brewer(palette = "Dark2") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
+  ggplot(aes(quarter, y, fill = race, group = race)) + labs(title= "", x = "", y = "Average Rating", caption = "Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3") + scale_y_continuous(limits = c(0,3), labels = c("Nunca/Never", "De Vez En Cuando/Sometimes", "Casi Siempre/Usually", "Siempre/Always")) + theme(legend.position = "none") + geom_col() + facet_wrap(~race) + geom_text(aes(label = y), vjust = 1.5, size = 3) + scale_fill_brewer(palette = "Accent") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"))
 ```
 
 ```{r}
@@ -1061,7 +1061,7 @@ sel_df %>%
   count(`Wants school adult`) %>% 
   summarise(`Wants school adult`, "Total" = n, "Percent" = round(n/sum(n),4)) %>% 
   ggplot(aes(x= quarter, y= Percent, fill = `Wants school adult`)) + geom_col(position = position_stack(reverse = T), width = .5) +
-  labs(x = "", y= "", title = "") + scale_fill_brewer(palette = "Dark2") +
+  labs(x = "", y= "", title = "") + scale_fill_brewer(palette = "Accent") +
   geom_text(aes(label= scales::percent(Percent)), position = position_stack(vjust = .5, reverse = T), size =4, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "bottom")
 ```
 
@@ -1071,7 +1071,7 @@ sel_df %>%
   filter(!is.na(race)) %>% 
   group_by(quarter, race) %>% 
   summarise(y = round(mean(wants_school_adult, na.rm = T),2)) %>% 
-  ggplot(aes(quarter, y, fill = race, group = race)) + labs(title= "", x = "", y = "") + scale_y_continuous(limits = c(0,1)) + theme(legend.position = "none") + geom_col() + facet_wrap(~race) + geom_text(aes(label= scales::percent(y)), vjust = 1.5, size = 3) + scale_fill_brewer(palette = "Dark2") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"), axis.text.y = element_blank(), axis.line.y = element_blank(), axis.ticks.y = element_blank())
+  ggplot(aes(quarter, y, fill = race, group = race)) + labs(title= "", x = "", y = "") + scale_y_continuous(limits = c(0,1)) + theme(legend.position = "none") + geom_col() + facet_wrap(~race) + geom_text(aes(label= scales::percent(y)), vjust = 1.5, size = 3) + scale_fill_brewer(palette = "Accent") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"), axis.text.y = element_blank(), axis.line.y = element_blank(), axis.ticks.y = element_blank())
 ```
 
 
@@ -1081,5 +1081,5 @@ sel_df %>%
   filter(!is.na(race)) %>% 
   group_by(quarter, race, gender) %>% 
   summarise(y = round(mean(wants_school_adult, na.rm = T),2)) %>% 
-  ggplot(aes(quarter, y, fill = race, group = race)) + labs(title= "", x = "", y = "") + scale_y_continuous(limits = c(0,1)) + theme(legend.position = "none") + geom_col() + facet_wrap(~race + gender) + geom_text(aes(label= scales::percent(y)), vjust = 1.5, size = 3) + scale_fill_brewer(palette = "Dark2") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"), axis.text.y = element_blank(), axis.line.y = element_blank(), axis.ticks.y = element_blank())
+  ggplot(aes(quarter, y, fill = race, group = race)) + labs(title= "", x = "", y = "") + scale_y_continuous(limits = c(0,1)) + theme(legend.position = "none") + geom_col() + facet_wrap(~race + gender) + geom_text(aes(label= scales::percent(y)), vjust = 1.5, size = 3) + scale_fill_brewer(palette = "Accent") + theme(strip.background = element_blank(), strip.text.x = element_text(face = "bold"), axis.text.y = element_blank(), axis.line.y = element_blank(), axis.ticks.y = element_blank())
 ```
