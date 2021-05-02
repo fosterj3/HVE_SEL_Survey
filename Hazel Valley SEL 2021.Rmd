@@ -415,7 +415,7 @@ b <- wf %>%
   count(`upset strategies`) %>% 
   summarise(`upset strategies`, "Total" = n, "Percent" = round(n/sum(n),4)) %>% 
   ggplot(aes(x= quarter, y= Percent, fill = `upset strategies`)) + geom_col(position = position_stack(reverse = T), width = .5) +
-  labs(x = "", y= "", title = "Tengo estrategias para calmarme cuando estoy molesto", subtitle = "If I get upset, I choose an effective strategy to calm down") + scale_fill_brewer(palette = "Dark2") +
+  labs(x = "", y= "", title = "Tengo estrategias para calmarme cuando estoy molesto", subtitle = "If I get upset, I choose an effective strategy to calm down", caption = "values less than 5% are not shown") + scale_fill_brewer(palette = "Dark2") +
   geom_text(aes(label= ifelse(Percent > "0.05",scales::percent(Percent), "")), position = position_stack(vjust = .5, reverse = T), size =2.5, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
 ```
 
