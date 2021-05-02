@@ -1,0 +1,8 @@
+"0","# Gender "
+"0","sel_df %>% "
+"0","  filter(!is.na(gender)) %>% "
+"0","  group_by(gender, quarter) %>% "
+"0","  summarise(y = mean(belong, na.rm = T)) %>% "
+"0","  ggplot(aes(quarter, y, color = gender, group = gender)) + scale_color_manual(values=c(""#049E64"", ""#DFB312"")) + scale_y_continuous(limits=c(0, 3)) + labs(x = ""Semester"", y = ""Mean"", color= ""Gender"") + geom_point() + geom_line()"
+"2","`summarise()` regrouping output by 'gender' (override with `.groups` argument)
+"

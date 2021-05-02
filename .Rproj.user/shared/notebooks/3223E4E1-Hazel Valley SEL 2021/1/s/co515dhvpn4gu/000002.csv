@@ -1,0 +1,6 @@
+"0","#Reading in the data "
+"0","winter <- readxl::read_xlsx(""sel_indicators_survey.xlsx"", sheet = 1)"
+"0","fall <- readxl::read_xlsx(""sel_indicators_survey.xlsx"", sheet = 2)"
+"0","demo <- readxl::read_xlsx(""sel_indicators_survey.xlsx"", sheet = 3)"
+"0",""
+"0","theme_set(theme_classic())"

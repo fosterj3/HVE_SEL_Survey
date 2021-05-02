@@ -1,0 +1,11 @@
+"0","# My Voice Matters"
+"0","c <- wf %>% "
+"0","  group_by(quarter) %>%"
+"0","  filter(!is.na(`voice matters`)) %>% "
+"0","  count(`voice matters`) %>% "
+"0","  summarise(`voice matters`, ""Total"" = n, ""Percent"" = round(n/sum(n),4)) %>% "
+"0","  ggplot(aes(x= quarter, y= Percent, fill = `voice matters`)) + geom_col(position = position_stack(reverse = T), width = .5) +"
+"0","  labs(x = """", y= """", title = ""Mi voz importa en nuestra escuela"") + scale_fill_brewer(palette = ""Dark2"") +"
+"0","  geom_text(aes(label= scales::percent(Percent)), position = position_stack(vjust = .5, reverse = T), size =2.5, color = ""black"") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = ""none"")"
+"2","`summarise()` regrouping output by 'quarter' (override with `.groups` argument)
+"

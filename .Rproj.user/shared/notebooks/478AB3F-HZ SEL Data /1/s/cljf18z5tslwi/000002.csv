@@ -1,0 +1,10 @@
+"0","# Teachers Care "
+"0","c <- wf %>% "
+"0","  group_by(quarter) %>%"
+"0","  filter(!is.na(`teachers care`)) %>% "
+"0","  count(`teachers care`) %>% "
+"0","  summarise(`teachers care`, ""Total"" = n, ""Percent"" = round(n/sum(n),4)) %>% "
+"0","  ggplot(aes(x= quarter, y= Percent, fill = `teachers care`)) + geom_col(position = position_stack(reverse = T), width = .5) +"
+"0","  labs(x = """", y= """", title = ""Mis maestros se preocupan por mí y me tratan con amabilidad"", caption = ""values less than 5% are not shown"") + scale_fill_brewer(palette = ""Dark2"") + geom_text(aes(label= ifelse(Percent > ""0.05"",scales::percent(Percent), """")), position = position_stack(vjust = .5, reverse = T), size =2.5, color = ""black"") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = ""none"")"
+"2","`summarise()` regrouping output by 'quarter' (override with `.groups` argument)
+"

@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1619929475837.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "253821780",
+    "id" : "6DAEF53B",
+    "lastKnownWriteTime" : 1619929979,
+    "last_content_update" : 1619930421918,
+    "path" : "~/Desktop/Hazel SEL Data/HZ SEL/Hazel Valley SEL 2021.Rmd",
+    "project_path" : "Hazel Valley SEL 2021.Rmd",
+    "properties" : {
+        "cursorPosition" : "182,42",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
