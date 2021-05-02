@@ -1,3 +1,0 @@
-"0","sel_df %>% "
-"0","  filter(!is.na(gender)) %>% "
-"0","ggplot(aes(x= reorder(gender, home_language,function(x)length(x)), fill= quarter)) + geom_bar(position = ""dodge"") + scale_fill_manual(values=c(""#049E64"", ""#DFB312"", name=""Semester"")) + coord_flip() + labs(x= """", fill = ""Semester"")"

@@ -1,8 +1,0 @@
-"0","#Language"
-"0","sel_df %>% "
-"0","  group_by(quarter, home_language) %>% "
-"0","  filter(!is.na(home_language)) %>% "
-"0","  summarise(y = round(mean(belong, na.rm = T),2)) %>% "
-"0","  ggplot(aes(quarter, y, fill = home_language, group = home_language)) + labs(title= """", x = """", y = """", caption = ""Chinese-Mandarin responded 'never' in the Fall, other blank sections were not filled out"") + scale_y_continuous(limits = c(0,3), labels = c(""Nunca/Never"", ""De Vez En Cuando/Sometimes"", ""Casi Siempre/Usually"", ""Siempre/Always"")) + theme(legend.position = ""none"") + geom_col() + facet_wrap(~home_language) + geom_text(aes(label = y), vjust = 1.5, size = 3)"
-"2","`summarise()` regrouping output by 'quarter' (override with `.groups` argument)
-"

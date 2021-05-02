@@ -532,7 +532,7 @@ c <- wf %>%
   count(`voice matters`) %>% 
   summarise(`voice matters`, "Total" = n, "Percent" = round(n/sum(n),4)) %>% 
   ggplot(aes(x= quarter, y= Percent, fill = `voice matters`)) + geom_col(position = position_stack(reverse = T), width = .5) +
-  labs(x = "", y= "", title = "Mi voz importa en nuestra escuela", subtitle = "My voice matters at out school") + scale_fill_brewer(palette = "Dark2") +
+  labs(x = "", y= "", title = "Mi voz importa en nuestra escuela", subtitle = "My voice matters at our school") + scale_fill_brewer(palette = "Dark2") +
   geom_text(aes(label= scales::percent(Percent)), position = position_stack(vjust = .5, reverse = T), size =2.5, color = "black") + coord_flip() + theme(legend.title = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(),axis.text.x = element_blank(),legend.position = "none")
 ```
 

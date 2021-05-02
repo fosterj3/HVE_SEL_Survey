@@ -1,9 +1,0 @@
-"0","#Overall Average SEL Domain "
-"0","sel_long %>% "
-"0","  filter(!str_detect(domain,paste(c(""care"", ""strategies""),collapse = '|'))) %>% "
-"0","  filter(domain != ""wants school adult"") %>% "
-"0","  group_by(domain, quarter) %>% "
-"0","  summarise(y= round(mean(score, na.rm = T),2)) %>% "
-"0","  ggplot(aes(quarter, y, fill = domain, group = domain)) + labs(title= """", x = """", y = """", caption = ""Nunca = 0, De Vez En Cuando = 1, Casi Siempre = 2, Siempre = 3"") + scale_y_continuous(limits = c(0,3), labels = c(""Nunca/Never"", ""De Vez En Cuando/Sometimes"", ""Casi Siempre/Usually"", ""Siempre/Always"")) + theme(legend.position = ""none"") + geom_col() + facet_wrap(~domain) + geom_text(aes(label = y), vjust = -.5, size = 3) + scale_fill_brewer(palette = ""Dark2"")"
-"2","`summarise()` regrouping output by 'domain' (override with `.groups` argument)
-"
