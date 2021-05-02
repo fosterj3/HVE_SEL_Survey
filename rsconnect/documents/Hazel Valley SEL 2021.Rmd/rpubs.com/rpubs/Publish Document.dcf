@@ -1,0 +1,10 @@
+name: Publish Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/763629/9554b2ff8eb64a23a772d4cd58d21521
+bundleId: https://api.rpubs.com/api/v1/document/763629/9554b2ff8eb64a23a772d4cd58d21521
+url: http://rpubs.com/jlfoster116/763629
+when: 1619931964.88909
