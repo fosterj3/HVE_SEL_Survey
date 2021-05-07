@@ -190,9 +190,9 @@ rbind(winter, fall) %>%
 
 ![](HZ_Hornet.jpeg)
 
-# Demographic Data 
+# Datos Demográficos
 
-## Gender 
+## Género (Gender)
 ```{r}
 # Fall Gender 
 table <- sel_df %>%
@@ -227,7 +227,7 @@ sel_df %>%
 ggplot(aes(x= reorder(gender, home_language,function(x)length(x)), fill= quarter)) + geom_bar(position = "dodge") + scale_fill_manual(values=c("#049E64", "#DFB312", name="Semester")) + coord_flip() + labs(x= "", fill = "Semester")
 ```
 
-## Race
+## La Raza (Race)
 ```{r}
 # Fall Race 
 table <- sel_df %>%
@@ -264,7 +264,7 @@ sel_df %>%
 ggplot(aes(x= reorder(race, quarter,FUN = length), fill= quarter)) + geom_bar(position = "dodge") + coord_flip() + labs(x= "", fill = "Semester") + scale_fill_manual(values=c("#049E64", "#DFB312", name="Semester"))
 ```
 
-## Home Language
+## Idioma del hogar (Home Language)
 ```{r}
 # Fall Language 
 table <- sel_df %>%
@@ -302,6 +302,8 @@ ggplot(aes(x= reorder(home_language, quarter,FUN = length), fill= quarter)) + ge
 ```
 
 # Social-Emotional Learning (SEL) Survey Responses 
+
+Esta sección contiene tres subsecciones de preguntas centradas en el cuidado, las estrategias SEL y otras preguntas SEL formuladas en la encuesta para estudiantes.
 
 This section contains three sub-sections of questions centered on caring, SEL strategies, and other SEL questions asked on the student survey  
 
