@@ -182,9 +182,8 @@ winter <- winter %>%
 fall <- fall %>% 
   mutate(Quarter = "Fall", Year = "2020") 
 rbind(winter, fall) %>% 
-  rename("SID" = `Email Address`) %>%
-  mutate(SID = parse_number(SID, trim_ws = T)) %>% 
-  left_join(demo, by = "SID") %>% 
+  mutate(sid = parse_number(sid, trim_ws = T)) %>% 
+  left_join(demo, by = "sid") %>% 
   write_csv("sel_indicators_survey_Demo.csv")
 ```
 
@@ -224,7 +223,7 @@ kable(table, caption = "Winter 2021 SEL Survey Respondents' Gender", col.names =
 ```{r}
 sel_df %>% 
   filter(!is.na(gender)) %>% 
-ggplot(aes(x= reorder(gender, home_language,function(x)length(x)), fill= quarter)) + geom_bar(position = "dodge") + scale_fill_manual(values=c("#049E64", "#DFB312", name="Semester")) + coord_flip() + labs(x= "", fill = "Semester")
+ggplot(aes(x= reorder(gender, home_language,function(x)length(x)), fill= quarter)) + geom_bar(position = "dodge") + scale_fill_manual(values=c("#049E64", "#DFB312")) + coord_flip() + labs(x= "", fill = "Semester")
 ```
 
 ## La Raza (Race)
@@ -261,7 +260,7 @@ kable(table, caption = "Winter 2021 SEL Survey Respondents' Race", col.names = c
 ```{r}
 sel_df %>% 
   filter(!is.na(race)) %>% 
-ggplot(aes(x= reorder(race, quarter,FUN = length), fill= quarter)) + geom_bar(position = "dodge") + coord_flip() + labs(x= "", fill = "Semester") + scale_fill_manual(values=c("#049E64", "#DFB312", name="Semester"))
+ggplot(aes(x= reorder(race, quarter,FUN = length), fill= quarter)) + geom_bar(position = "dodge") + coord_flip() + labs(x= "", fill = "Semester") + scale_fill_manual(values=c("#049E64", "#DFB312"))
 ```
 
 ## Idioma del hogar (Home Language)
@@ -298,7 +297,7 @@ kable(table, caption = "Winter 2021 SEL Survey Respondents' Home Language", col.
 ```{r}
 sel_df %>% 
   filter(!is.na(home_language)) %>% 
-ggplot(aes(x= reorder(home_language, quarter,FUN = length), fill= quarter)) + geom_bar(position = "dodge") + coord_flip() + labs(x= "", fill = "Semester") + scale_fill_manual(values=c("#049E64", "#DFB312", name="Semester"))
+ggplot(aes(x= reorder(home_language, quarter,FUN = length), fill= quarter)) + geom_bar(position = "dodge") + coord_flip() + labs(x= "", fill = "Semester") + scale_fill_manual(values=c("#049E64", "#DFB312"))
 ```
 
 # Social-Emotional Learning (SEL) Survey Responses 
